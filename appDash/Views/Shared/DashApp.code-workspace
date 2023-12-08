@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../Downloads/sidebar-05"
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"driver": "SQLite",
+				"name": "pp",
+				"database": "${workspaceFolder:DashApp}/appDash/app.db"
+			}
+		]
+	}
+}

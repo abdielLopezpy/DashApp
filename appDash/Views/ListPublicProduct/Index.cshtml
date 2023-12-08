@@ -1,0 +1,30 @@
+@model IEnumerable<appDash.Models.Product>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<div class="container mt-4">
+    <h1 class="display-4">Product List</h1>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Quantity: @Html.DisplayFor(modelItem => item.Quantity)</li>
+                            <li class="list-group-item">Price: $@Html.DisplayFor(modelItem => item.Price)</li>
+                            <li class="list-group-item">User ID: @Html.DisplayFor(modelItem => item.UserId)</li>
+                        </ul>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info mt-3">Details</a>
+                        <!-- Puedes agregar más acciones aquí -->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

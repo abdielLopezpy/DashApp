@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - appDash</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/appDash.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <header class="fixed-element">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-0">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">appDash</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- Aquí puedes agregar elementos de navegación si es necesario -->
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link ml-2" href="/ListPublicProduct"><i class="fa fa-book"></i> Catálogo</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link ml-2" href="/BlogPublic"><i class="fa fa-newspaper-o"></i> Blog</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link ml-2" href="CustomerPublic/Create"><i class="fa fa-envelope"></i> Contáctanos</a>
+                    }
+                </li>
+            </ul>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="wrapper d-flex align-items-stretch">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <nav id="sidebar" class="mt-0">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <h1><a href="index.html" class="logo">Dashboard <span>E-Commerce Agency</span></a></h1>
+                    <ul class="list-unstyled components mb-5">
+                        <!-- add bog -->
+                        <li>
+                            <a href="/Blog"><i class="fa fa-newspaper-o"></i> Blog</a>
+                        <li class="active">
+                            <a href="/"><i class="fa fa-home"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="/"><i class="fa fa-line-chart"></i> Resumen de Ventas</a>
+                        </li>
+                        <li>
+                            <a href="/Product"><i class="fa fa-shopping-cart"></i> Gestión de Productos </a>
+                        </li>
+                        <li>
+                            <a href="/Order"><i class="fa fa-file-text-o"></i> Gestión de Pedidos</a>
+                        </li>
+                        <li>
+                            <a href="/Customer"><i class="fa fa-user"></i> Gestión de Clientes</a>
+                        </li>
+                        <li>
+                            <a href="/Employee"><i class="fa fa-users"></i> Gestión de Empleados</a>
+                        </li>
+                        <li>
+                            <a href="/EmployeeAttendance"><i class="fa fa-calendar-check-o"></i> Gestión de Asistencia</a>
+                        </li>
+                        <li>
+                            <a href="/Inventory"><i class="fa fa-archive"></i> Información de Inventario</a>
+                        </li>
+                        <li>
+                            <a href="/Reports"><i class="fa fa-bar-chart"></i> Informes de Ventas</a>
+                        </li>
+                        <li>
+                            <a href="/Marketing"><i class="fa fa-bullhorn"></i> Marketing y Promociones</a>
+                        </li>
+                        <li>
+                            <a href="/Settings"><i class="fa fa-cog"></i> Configuración</a>
+                        </li>
+                    </ul>
+                    <div class="footer">
+                        <p>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+                    </div>
+                </div>
+            </nav>
+        }
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
